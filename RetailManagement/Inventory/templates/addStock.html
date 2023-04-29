@@ -1,0 +1,35 @@
+{%extends "base.html"%}
+{%block title%}
+Add Product To Active Inventory
+{%endblock%}
+{%load crispy_forms_tags %}
+{%block content%}
+<div class="container-sm">   
+    <center>
+        <div class="container text-center" >
+            <centre>
+            <div class="row justify-content-center">          
+                <div class="justify-content-center">
+                    <img src="{{product.Product.Image_Url}}" height="450px" width="300px" alt="">
+                    <h1>Product Name: {{product.Product.ProductName}}</h1>
+                    <h2>Category:{{product.Product.Category}}</h2>
+                    <h2>Brand:{{product.Product.Brand}}</h2>
+                    <h2>Price:{{product.Product.Price}}</h2>
+                    <h2>Barcode:{{product.Product.Barcode}}</h2>
+                    <h2>EAN:{{product.Product.EAN}}</h2>
+                </div>
+            </div>
+            </centre>
+        </div>
+        <form action="" method="POST">
+            {%csrf_token%}
+            
+                {{form|crispy}}
+            
+            <input type="submit" value="Submit" class="btn btn-success">
+        </form>
+        
+    </center>
+</div>
+
+{%endblock%}

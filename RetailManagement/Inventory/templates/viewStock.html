@@ -1,0 +1,35 @@
+{%extends "base.html"%}
+{%block title%}
+Current Stock
+{%endblock%}
+{%load crispy_forms_tags %}
+{%block content%}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">EAN</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Unit Price</th>
+
+        </tr>
+    </thead>
+    <tbody>
+{%for item in stock%}
+        <tr>
+            <th scope="row">{{item.Product.id}}</th>
+            <td>{{item.Product.ProductName}}</td>
+            <td>{{item.Product.EAN}}</td>
+            <td>{{item.get_stock}}</td>
+            <td>₹{{item.Product.Price}}</td>
+
+        </tr>
+{%endfor%}
+
+    </tbody>
+    
+</table>
+<h1>Total Units = {{total_units}}</h1>
+<h1>Total Value = ₹{{total_value}}</h1>
+{%endblock%}

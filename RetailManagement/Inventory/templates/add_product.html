@@ -1,0 +1,28 @@
+{%extends "base.html"%}
+{%block title%}
+<h1>Add Product</h1>
+{%endblock%}
+{%load crispy_forms_tags %}
+{%block content%}
+<div class="container-sm">   
+    <center>
+        
+        <h1>Add Product</h1>
+        <br/>
+        {%if submitted %}
+            Product was Added
+        {%else%}
+
+        {% endif %}
+        <form action="" method="POST">
+            {%csrf_token%}
+            
+                {{ form|crispy }}
+            
+            <input type="submit" value="Submit" class="btn btn-success">
+        </form>
+        
+    </center>
+</div>
+
+{%endblock%}

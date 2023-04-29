@@ -1,0 +1,36 @@
+{%extends "base.html"%}
+{%block title%}Product Info{%endblock%}
+{% load static%}
+{%block content%}
+
+    <div class="container text-center" >
+        <centre>
+        <div class="row justify-content-center">          
+            <div class="justify-content-center">
+                <img src="{{product.Image_Url}}" height="450px" width="300px" alt="">
+                <h1>Product Name: {{product.ProductName}}</h1>
+                <h2>Category:{{product.Category}}</h2>
+                <h2>Brand:{{product.Brand}}</h2>
+                <h2>Price:{{product.Price}}</h2>
+                <h2>Barcode:{{product.Barcode}}</h2>
+                <h2>EAN:{{product.EAN}}</h2>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="{%url 'Inventory:product_list'%}" class="btn btn-primary">Back</a>
+                    <a href="{%url 'Inventory:add_product_to_store' product.id%}" class="btn btn-primary">Add To Store</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+        </centre>
+    </div>
+
+
+<!--    <ul> -->
+<!--        <center><strong><h2>Film:{{film.title}}</h2></strong></center><br/>-->
+<!--        <li><strong>Description:</strong> {{film.description}}</br></li><br/>-->
+<!--        <li><strong>Age Rating :</strong> {{film.age}}</li><br/>-->
+
+<!--    </ul>-->
+
+
+{%endblock%}

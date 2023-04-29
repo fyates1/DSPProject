@@ -1,0 +1,84 @@
+{%extends "base.html"%}
+{%load static%}
+
+{%block content%}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 d-flex align-items-stretch" >
+            <div class="card md-4 ">
+                <img src="{%static 'images/writeOff-graph.png'%}" class="card-img-top" alt="Plus Icon">
+                <div class="card-body d-flex flex-column ">
+                    <h5 class="card-title">Top 5 Write-offs</h5>
+                    {%for key, value in WriteOffs.items %}
+                    <p class="card-text">{{key}}: {{value}}</p>
+                    {%endfor%}
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-stretch" >
+            <div class="card md-4 ">
+                <img src="{%static 'images/writeOffBBD-graph.png'%}" class="card-img-top" alt="Plus Icon">
+                <div class="card-body d-flex flex-column ">
+                    <h5 class="card-title">Top 5 Write-offs (BBD)</h5>
+                    {%for key, value in WriteOffsBBD.items %}
+                    <p class="card-text">{{key}}: {{value}}</p>
+                    {%endfor%}
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-stretch" >
+            <div class="card md-4 ">
+                <img src="{%static 'images/writeOffDamages-graph.png'%}" class="card-img-top" alt="Plus Icon">
+                <div class="card-body d-flex flex-column ">
+                    <h5 class="card-title">Top 5 Write-offs (Damages)</h5>
+                    {%for key, value in WriteOffsDamages.items %}
+                    <p class="card-text">{{key}}: {{value}}</p>
+                    {%endfor%}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row  h-100">
+        <div class="col-md-4 d-flex align-items-stretch " >
+            <div class="card md-4 w-100">
+                <div class="card-body d-flex flex-column ">
+                    <h5 class="card-title">Out of stock lines</h5>
+                    {% for item in outOfStock %}
+                        <p>{{item}}</p>
+                    {%endfor%}
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-stretch " >
+            <div class="card md-4 w-100">
+                <div class="card-body d-flex flex-column ">
+                    <h5 class="card-title">Low stock lines </h5>
+                    <p>(Lines at less than half their minimum quantity)</p>
+                    {% for item in lowStock %}
+                        <p>{{item}}</p>
+                    {%endfor%}
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex align-items-stretch " >
+            <div class="card md-4 w-100">
+                <div class="card-body d-flex flex-column ">
+                    <h5 class="card-title">High stock lines </h5>
+                    <p>(Lines at above their minimum quantity)</p>
+                    {% for item in highStock %}
+                        <p>{{item}}</p>
+                    {%endfor%}
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    </div>
+{%endblock%}

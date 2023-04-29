@@ -1,0 +1,133 @@
+{%extends "base.html"%}
+{%load static%}
+
+{%block title%}Home- Inventory{%endblock%}
+{%block head%}
+    <link rel="stylesheet" href="{%static 'css/inv_home_style.css '%}">
+{%endblock%}
+{%block content%}
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">Welcome, {{user}}</h1>
+        <p>Welcome To the inventory home. This is where all of your inventory managemnet options will be found.</p>
+        <p>These options are:</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 d-flex align-items-stretch">
+        <div class="card md-4 ">
+            <img src="{%static 'images/plus-icon.png'%}" class="card-img-top" alt="Plus Icon">
+            <div class="card-body d-flex flex-column align-items-center">
+                <h5 class="card-title">Add Products</h5>
+                <p class="card-text">Click here to add products to the database.</p>
+                <a href="{%url 'Inventory:add_product'%}" class="btn btn-primary">Add Products</a>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex align-items-stretch">
+        <div class="card md-4 ">
+            <img src="{%static 'images/plus-icon.png'%}" class="card-img-top" alt="Plus Icon">
+            <div class="card-body d-flex flex-column align-items-center">
+                <h5 class="card-title">Bulk Add Products</h5>
+                <p class="card-text">Click here to add products to the database via CSV upload.</p>
+                <a href="{%url 'Inventory:bulk_add_products'%}" class="btn btn-primary">Batch Add Products</a>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex align-items-stretch">
+        <div class="card md-4 ">
+            <img src="{%static 'images/Catalog-icon.jpg'%}" class="card-img-top" alt="Plus Icon">
+            <div class="card-body d-flex flex-column align-items-center">
+                <h5 class="card-title">Product List</h5>
+                <p class="card-text">Click here to view a list of all possible products to add to your inventory.</p>
+                <a href="{%url 'Inventory:product_list'%}" class="btn btn-primary">Product List</a>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex align-items-stretch">
+        <div class="card md-4 ">
+            <img src="{%static 'images/vector-checklist.webp'%}" class="card-img-top" alt="Plus Icon">
+            <div class="card-body d-flex flex-column align-items-center">
+                <h5 class="card-title">Active Product List</h5>
+                <p class="card-text">Click here to view a list of all active products in your store, this is also where you can log in inventory.</p>
+                <a href="{%url 'Inventory:list_active_products'%}" class="btn btn-primary">Active Product List</a>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex align-items-stretch">
+        <div class="card md-4">
+            <img src="{%static 'images/12_orderform_icon.jpg'%}" class="card-img-top" alt="Plus Icon">
+            <div class="card-body d-flex flex-column align-items-center">
+                <h5 class="card-title">Order List</h5>
+                <p class="card-text">Click here to look at your orders.</p>
+                <a href="{%url 'Inventory:view_orders'%}" class="btn btn-primary">Order List</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex align-items-stretch">
+        <div class="card md-4">
+            <img src="{%static 'images/inventory-icon.png'%}" class="card-img-top" alt="Plus Icon">
+            <div class="card-body d-flex flex-column align-items-center">
+                <h5 class="card-title">Inventory</h5>
+                <p class="card-text">Click here to view your current inventory</p>
+                <a href="{%url 'Inventory:view_inventory'%}" class="btn btn-primary">Inventory</a>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex align-items-stretch">
+    <div class="card md-4">
+        <img src="{%static 'images/writeOff-icon.png'%}" class="card-img-top" alt="Plus Icon">
+        <div class="card-body d-flex flex-column align-items-center">
+            <h5 class="card-title">Write Off</h5>
+            <p class="card-text">This is where you write-off stock (Remove it from inventory)</p>
+            <a href="{%url 'Inventory:writeoff'%}" class="btn btn-primary">Write Off</a>
+
+
+        </div>
+    </div>
+    </div>
+    <div class="col-md-4 d-flex align-items-stretch">
+        <div class="card md-4">
+            <img src="{%static 'images/writeOff-list-icon.png'%}" class="card-img-top" alt="Plus Icon">
+            <div class="card-body d-flex flex-column align-items-center">
+                <h5 class="card-title">Write Off List</h5>
+                <p class="card-text">This is where you can find a list of write-offs (Items removed from inventory)</p>
+                <a href="{%url 'Inventory:view_writeOffs'%}" class="btn btn-primary">Write Off List</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex align-items-stretch">
+        <div class="card md-4">
+            <img src="{%static 'images/reSequence-icon.png'%}" class="card-img-top" alt="Plus Icon">
+            <div class="card-body d-flex flex-column align-items-center">
+                <h5 class="card-title">Refresh The Sequence</h5>
+                <p class="card-text"><strong>Warning</strong> this will delete the current sequence and sort everything by category then alphabetically!</p>
+                <a href="{%url 'Inventory:reSequenceProducts'%}" class="btn btn-primary">Resequence Stock</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex align-items-stretch">
+        <div class="card md-4">
+            <img src="{%static 'images/placeAfter.png'%}" class="card-img-top" alt="Plus Icon">
+            <div class="card-body d-flex flex-column align-items-center">
+                <h5 class="card-title">Move Items in Sequence</h5>
+                <p class="card-text">This is where you can manually edit your sequence to represent your store layout</p>
+                <a href="{%url 'Inventory:placeAfter'%}" class="btn btn-primary">Edit Sequence</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{%endblock%}

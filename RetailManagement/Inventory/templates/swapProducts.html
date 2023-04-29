@@ -1,0 +1,24 @@
+{%extends "base.html"%}
+{%block title%}
+Move Product in sequence
+{%endblock%}
+{%load crispy_forms_tags %}
+{%block content%}
+<div class="container-sm">   
+
+        
+        <h1>Place Product After</h1>
+        <br/>
+
+        <form action="" method="POST">
+            {%csrf_token%}
+            
+                {{ form|crispy }}
+            
+            <input type="submit" value="Submit" class="btn btn-success">
+        </form>
+        
+
+</div>
+
+{%endblock%}

@@ -1,0 +1,39 @@
+{%extends "base.html"%}
+
+{%block title%}Write Off Stock{% endblock %}
+{%load crispy_forms_tags %}
+
+{%block content%}
+<h1>Write off Stock</h1>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Barcode</th>
+          <th>Quantity</th>
+          <th>Reduce Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+          <tr>
+            <td>{{ item.activeProduct.Product.ProductName }}</td>
+            <td>{{ item.UniqueBarcode }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>
+                <form method="POST">
+                    {% csrf_token %}
+                    {%csrf_token%}
+                    {{form|crispy}}
+                    <input type="hidden" name="item_id" value="{{ item.id }}">
+                    <button type="submit" class="btn btn-primary">Reduce Stock</button>
+                </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+  </form>
+{%endblock%}

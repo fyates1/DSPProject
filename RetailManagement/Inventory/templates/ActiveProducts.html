@@ -1,0 +1,65 @@
+{%extends 'base.html'%}
+{%block title%}Active Product List{%endblock%}
+{% block content %}
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <h1>All Active Products</h1>
+  </div>
+  </form> 
+  <div class="row">
+    {% for product in products %}
+    <div class="col-md-4 d-flex align-items-stretch">
+      <div class="card md-4 h-150">
+        <img src="{{ product.Product.Image_Url}}" class="card-img-top" alt="{{ product.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.Product.ProductName }}</h5>
+          <p class="card-text"><small class="text-muted">{{ product.Product.Category }}</small></p>
+          <p class="card-text">{{ product.Product.Price }}</p>
+          <a href="{% url 'Inventory:addStockItem' product.Product.id %}">Add Stock</a><br>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<div class="container-fluid mt-3">
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      {% if products.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ products.previous_page_number }}">&laquo; Previous</a>
+      </li>
+      {% endif %}
+      {% if products.number|add:'-3' > 1 %}
+      <li class="page-item">
+        <a class="page-link" href="?page=1{% if query%}&q={{query}}{%endif%}">1</a>
+      </li>
+      <li class="page-item disabled">
+        <span class="page-link">...</span>
+      </li>
+      {% endif %}
+      {% for i in products.paginator.page_range %}
+      {% if i > products.number|add:'-3' and i < products.number|add:'3' %}
+      <li class="page-item{% if products.number == i %} active{% endif %}">
+        <a class="page-link" href="?page={{ i }}{% if query%}&q={{query}}{%endif%}">{{ i }}</a>
+      </li>
+      {% endif %}
+      {% endfor %}
+      {% if products.number|add:'3' < products.paginator.num_pages %}
+      <li class="page-item disabled">
+        <span class="page-link">...</span>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ products.paginator.num_pages }}{% if query%}&q={{query}}{%endif%}">{{ products.paginator.num_pages }}</a>
+      </li>
+      {% endif %}
+      {% if products.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ products.next_page_number }}{% if query %}&q={{query}}{%endif%}">Next &raquo;</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+</div>
+{% endblock %}

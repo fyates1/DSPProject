@@ -1,0 +1,43 @@
+{%extends "base.html"%}
+{%block title%}
+Freshness Checks for today
+{%endblock%}
+{%load crispy_forms_tags %}
+{%block content%}
+<h1>Today's Freshness Checklist</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">EAN</th>
+            <th scope="col">Best Before</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Confirm Removal</th>
+        </tr>
+    </thead>
+    <tbody>
+{%for item in items%}
+        <tr>
+            <th scope="row">{{item.activeProduct.Product.id}}</th>
+            <td>{{item.activeProduct.Product.ProductName}}</td>
+            <td>{{item.activeProduct.Product.EAN}}</td>
+            <td>{{item.bestBeforeDate}}</td>
+            <td>{{item.quantity}}</td>
+            <td>
+                <form method="POST">
+                    {% csrf_token %}
+                    {%csrf_token%}
+                    {{form|crispy}}
+                    <input type="hidden" name="item" value="{{ item }}">
+                    <input type="hidden" name="quantity" value="{{ item.quantity }}">
+                    <input type="hidden" name="reason" value="BBD"> 
+                    <button type="submit" class="btn btn-primary">Confirm Removal</button>
+                </form>
+            </td>
+        </tr>
+{%endfor%}
+    </tbody>
+</table>
+
+{%endblock%}

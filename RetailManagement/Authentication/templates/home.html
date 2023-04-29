@@ -1,0 +1,28 @@
+{%extends "base.html" %}
+{%load static%}
+{%block head%}
+    <link rel="stylesheet" href="{%static 'css/home_style.css '%}">
+{%endblock%}
+
+{%block content%}
+<style>
+  /* .jumbotron { 
+      background: url({%static 'images/supermarket-background.jpg'%}); 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+  } */
+</style>
+<div class="jumbotron jumbotron-fluid  text-light" >
+    <div class="container justify-content-center">
+      <h1 class="mb-3">Welcome to Easy Retail Management </h1>
+      <h4 class="mb-3">Stay ahead of the competiton with our cutting-edge retail management platform</h4>
+      <a class="btn btn-outline-light btn-lg" href="{%url 'Inventory:home' %}" role="button">Inventory</a>
+      <a class="btn btn-outline-light btn-lg" href="{%url 'Freshness:removals' %}" role="button">Removals</a>
+      <a class="btn btn-outline-light btn-lg" href="{%url 'Freshness:BBDAllocation' %}" role="button">BBD Allocation</a>
+      <a class="btn btn-outline-light btn-lg" href="{%url 'Reports:home' %}" role="button">Reports</a>
+    </div>
+</div>
+
+{%endblock%}

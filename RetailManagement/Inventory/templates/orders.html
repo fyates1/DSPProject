@@ -1,0 +1,34 @@
+{%extends "base.html"%}
+
+{% block title %}Order Form{% endblock %}
+
+
+{%block content%}
+<h1>Order Form</h1>
+<table class="table">
+    <tr>
+        <th scope="col">Product ID</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Current Stock</th>
+        <th scope="col">Minimum Stock</th>
+        <th scope="col">OrderQuantity</th>
+    </tr>
+    {%for product in orders%}
+        <tr>
+            <td scope="col">{{product.id}}</td>
+            <td scope="col">{{product.ProductName}}</td>
+            <td scope="col">{{product.ProductStock}}</td>
+            <td scope="col">{{product.minStock}}</td>
+            <td scope="col">{{product.OrderAmmount}}</td>
+            <td>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <input type="hidden" name="product_OrderAmmount" value="{{ product.OrderAmmount }}">
+                    <button type="submit" class="btn btn-primary">Confirm Delivery</button>
+                </form>
+            </td>
+        </tr>
+    {%endfor%}
+</table>
+{%endblock%}
