@@ -26,7 +26,7 @@ def removals(request):
             writeoff.save()
             messages.success(request, "Items Removed")
 
-        return redirect("Freshness:freshness")
+        return redirect("Freshness:removals")
     items= StockItem.objects.filter(Q(bestBeforeDate__lte=date.today())).order_by('activeProduct__sequence__position')
 
 

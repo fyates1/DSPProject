@@ -3,6 +3,7 @@ from django.urls import reverse
 from .forms import SignUpForm, LoginForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login,logout
+from django.contrib import messages
 
 def login_view(request):
     form = LoginForm(request.POST)
@@ -20,9 +21,9 @@ def login_view(request):
                 else:
                     return redirect('home')
             else:
-                message = "Invalid Credentials"
+                messages.error(request, "Invalid Credentials") 
         else:
-            message = "Error In Form"
+            messages.error("Error In Form")
     return render(request, "login.html",{"form": form , "message":message})
 
 def logout_user(request): 

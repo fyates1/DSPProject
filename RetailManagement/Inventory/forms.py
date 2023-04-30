@@ -12,6 +12,7 @@ class ProductForm(ModelForm):
 
 class CSVUploadForm(forms.Form):
     file=forms.FileField()
+
 class ActiveItemForm(ModelForm):
     class Meta:
         model = ActiveProduct

@@ -16,7 +16,7 @@ class Product(models.Model):
 
 class ActiveProduct(models.Model):
     Product= models.ForeignKey(Product, on_delete=models.RESTRICT)
-    minimumStockQuantity = models.IntegerField(default=0)
+    minimumStockQuantity = models.PositiveIntegerField(default=0)
     Classes= (("N/A","N/A"),
         ("EXTRA CLASS","Extra Class"),
         ("CLASS 1","Class 1"),

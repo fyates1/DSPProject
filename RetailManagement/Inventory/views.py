@@ -153,10 +153,16 @@ def addStockItem(request,product_id):
         form = StockItemForm(request.POST)
 
         if form.is_valid():
-            Item = StockItem(activeProduct=product,
-            bestBeforeDate=form.cleaned_data.get("bestBeforeDate"),
-            quantity=form.cleaned_data.get("quantity"))
-            Item.save()
+            quantity = form.cleaned_data.get("quantity")
+            if quantity >0:
+                Item = StockItem(activeProduct=product,
+                bestBeforeDate=form.cleaned_data.get("bestBeforeDate"),
+                quantity=quantity)
+                Item.save()
+            else:
+                messages.error("Please enter a positive number for stock")
+            
+            
         return redirect('Inventory:list_active_products')
             
     else:
@@ -184,8 +190,8 @@ def writeoff(request):
             messages.error(request, "That item no longer exists")
             return redirect("Inventory:writeoff")
 
-        if item.quantity < int(quantity):
-            messages.error(request,"You tried writing off more items than exist!")
+        if item.quantity < int(quantity) or int(quantity)<0:
+            messages.error(request,"You tried writing off more items than exist or a negative number of items!")
         else:
             # item.quantity -= int(quantity)
             # item.save()
@@ -232,6 +238,9 @@ def placeAfter(request):
             activeProduct2 = form.cleaned_data["PlaceItemAfter"]
             ap1sequence = sequence.objects.get(product=activeProduct1)
             ap2sequence = sequence.objects.get(product=activeProduct2)
+            if activeProduct1 == activeProduct1:
+                messages.error(request,"You can't place a product after itself")
+                return redirect("Inventory:placeAfter")
 
             oldPos = ap1sequence.position
             newPos = ap2sequence.position
